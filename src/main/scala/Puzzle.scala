@@ -1,7 +1,7 @@
 /**
   * Represents a Sudoku puzzle.
   */
-class Puzzle(startingCells: Seq[Cell]) {
+class Puzzle(startingCells: Seq[Cell] = Seq()) {
   val grid: Array[Array[Cell]] = Array.fill(9) { new Array[Cell](9) }
   startingCells.foreach(cell => grid(cell.col)(cell.row) = cell)
 
