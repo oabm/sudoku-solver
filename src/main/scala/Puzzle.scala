@@ -69,32 +69,30 @@ class Puzzle(startingCells: Seq[Cell] = Seq()) {
   }
 
   /**
-    * Fetch the cells of a 3x3 sector denoted by its (x,y) coordinates.
-    * The (x,y) values are 0-indexed, and start in the upper-left corner.
-    * Here are the coordinates for each 3x3 sector:
+    * Fetch the cells of a 3x3 sector.
+    * Sectors are numbered as follows:
+    *    0 1 2 3 4 5 6 7 8
+    *   +-----+-----+-----+
+    * 0 |     |     |     |
+    * 1 |  0  |  1  |  2  |
+    * 2 |     |     |     |
+    *   +-----+-----+-----+
+    * 3 |     |     |     |
+    * 4 |  3  |  4  |  5  |
+    * 5 |     |     |     |
+    *   +-----+-----+-----+
+    * 6 |     |     |     |
+    * 7 |  6  |  7  |  8  |
+    * 8 |     |     |     |
+    *   +-----+-----+-----+
     *
-    *  +-------+-------+-------+
-    *  |       |       |       |
-    *  | (0,0) | (1,0) | (2,0) |
-    *  |       |       |       |
-    *  |-------+-------+-------+
-    *  |       |       |       |
-    *  | (0,1) | (1,1) | (2,1) |
-    *  |       |       |       |
-    *  +-------+-------+-------+
-    *  |       |       |       |
-    *  | (0,2) | (1,2) | (2,2) |
-    *  |       |       |       |
-    *  +-------+-------+-------+
-    *
-    * @param x
-    * @param y
+    * @param index see above diagram
     * @return
     */
-  def getSector(x: Int, y: Int): Seq[Cell] =
+  def getSector(index: Int): Seq[Cell] =
     0.to(2).flatMap(col =>
       0.to(2).map(row =>
-        grid(x*3 + col)(y*3 + row)
+        grid((index % 3) * 3 + col)((index / 3) * 3 + row)
       )
     )
 

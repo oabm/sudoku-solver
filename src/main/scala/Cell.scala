@@ -24,6 +24,14 @@ class Cell(val col: Int, val row: Int, val value: Option[Int]) {
   def isFilledIn: Boolean = value.isDefined
 
   /**
+    * Get the index of the sector in which the cell resides.
+    * See comment on Puzzle#getSector() for details.
+    *
+    * @return
+    */
+  def sector: Int = (row / 3) * 3 + col / 3
+
+  /**
     * Returns the value from the input file
     * (digit for filled-in cell, '_' for blank cell).
     *
